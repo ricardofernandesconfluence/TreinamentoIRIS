@@ -11,7 +11,7 @@ Property DataInicio As %Date [ SqlColumnNumber = 3 ];
 
 // Status
 
-Property Status As %Boolean [ SqlColumnNumber = 4 ];
+Property Status As %String [ SqlColumnNumber = 4 ];
 
 // Alunos
 

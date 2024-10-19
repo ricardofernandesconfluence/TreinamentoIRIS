@@ -1,0 +1,18 @@
+ROUTINE Exercicio4 
+Exercicio4 ;Este é o exercicio 4
+ ;
+Inicio() ;
+ Set tContinua=1
+ While tContinua
+ {
+	 Read !,"Aluno: ",aluno
+	 If '$l($G(aluno)) Set tContinua=0 Continue
+	 
+	 Read !,"Matricula: ",matricula
+	 Read !,"Nome Completo: ",nome
+	 Read !,"Telefone: ",telefone
+	 Read !,"Data de Nascimento: ",DtaNasc
+	 Read !,"Sexo: ",Sexo
+
+ }
+ Quit

@@ -1,0 +1,20 @@
+ROUTINE Exercicio2 
+Exercicio2 ;Este é o exercício 2
+ ;
+Inicio ;
+ Read !,"Digite o valor de x: ",x
+ Read !,"Digite o valor de y: ",y
+ Set t=""
+ For a=x:1:y
+ {
+	 If a#2'=0 
+	 {
+		 w !,a," - este é numero impar"
+#;		 If a#10=0 Set t=t+1
+	 }
+	 
+ }
+ 
+#; w !,"Total numeros pares divididos por 10 com resto = 0 é ",t
+#; teste git 2
+ Quit

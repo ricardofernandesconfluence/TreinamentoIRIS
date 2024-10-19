@@ -1,0 +1,11 @@
+ROUTINE Exercicio7 
+Exercicio7 ;Exercicio7
+ ;
+Inicio() ;
+ Read "Nome: ",Nome
+ Set tNome=$Replace(Nome," ","")
+ 
+ w !,"Numero de caracteres do nome sem considerar espacos em branco: ",$l(tNome),!
+ w !,"Nome trocando os espacos em branco por ""|"": ",$Replace(Nome," ","|"),!
+ 
+ Quit

@@ -1,0 +1,44 @@
+ROUTINE Exercicio5 
+Exercicio5	; Exercicio 5
+  ;
+Inicio() ;
+ 
+  Set tcontinua=1,tNumAluno=0
+  While tcontinua
+  {
+	 Read !,"Digite a Matricula: ",matricula
+	 If '$l($g(matricula)) Set tcontinua=0 Continue
+	 
+	 Read !,"Digite o Nome Completo: ",nome
+	 
+	 Read !,"Digite o Telefone: ",telefone
+	 
+	 Read !,"Digite a Data de Nascimento: ",DtaNasc
+	 
+	 Read !,"Digite o Sexo: ",Sexo
+	 
+	 Set tNumAluno=tNumAluno+1
+	 Set ^tAluno(tNumAluno,"Matricula")=matricula
+	 Set ^tAluno(tNumAluno,"NomeCompleto")=nome
+	 Set ^tAluno(tNumAluno,"Telefone")=telefone
+	 Set ^tAluno(tNumAluno,"DataNascimento")=DtaNasc
+	 Set ^tAluno(tNumAluno,"Sexo")=Sexo
+  }
+  
+  Set tNumAluno=""
+  For
+  {
+	  Set tNumAluno=$o(^tAluno(tNumAluno))
+	  If '$l(tNumAluno) Quit
+	  
+	  W !!,"Numero Aluno: ",tNumAluno
+	  W !,"Matricula: ",$g(^tAluno(tNumAluno,"Matricula"))
+	  W !,"Nome Completo: ",$g(^tAluno(tNumAluno,"NomeCompleto"))
+	  W !,"Telefone: ",$g(^tAluno(tNumAluno,"Telefone"))
+	  W !,"Data Nascimento: ",$g(^tAluno(tNumAluno,"DataNascimento"))
+	  W !,"Sexo: ",$g(^tAluno(tNumAluno,"Sexo"))
+	  W !,"================================================================="
+	  	  
+  }
+  
+  Quit

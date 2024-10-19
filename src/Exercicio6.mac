@@ -1,0 +1,13 @@
+ROUTINE Exercicio6 
+Exercicio6 ;Exercicio6
+ ;
+Inicio() ;
+ Read "Digite a data: ",DataRefer
+ 
+ Set tDtaInterna=$zdh(DataRefer,4)
+ 
+ W !,"Data "_DataRefer_" no formato interno: "_tDtaInterna,!
+ W !,"Data "_DataRefer_" no formato islâmico: "_$zd(tDtaInterna,18),!
+ W !,"Data "_DataRefer_" representa o mês islâmico: "_$p($zd(tDtaInterna,18)," ",2,3),!
+ 
+ Quit

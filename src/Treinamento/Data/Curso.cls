@@ -14,6 +14,10 @@ Property Preco As %Numeric [ SqlColumnNumber = 3 ];
 
 Property Duracao As %Integer [ SqlColumnNumber = 4 ];
 
+// Indice por Nome
+
+Index IENome On Nome;
+
 Storage Default
 {
 <Data name="CursoDefaultData">

@@ -9,6 +9,10 @@ Property Nome As %String(MAXLEN = 60) [ SqlColumnNumber = 2 ];
 
 Property Matricula As %String [ SqlColumnNumber = 3 ];
 
+// Indice por nome de instrutor
+
+Index IndxNome On Nome;
+
 Storage Default
 {
 <Data name="InstrutorDefaultData">
@@ -19,9 +23,6 @@ Storage Default
 <Value>Nome</Value>
 </Value>
 <Value name="3">
-<Value>Preco</Value>
-</Value>
-<Value name="4">
 <Value>Matricula</Value>
 </Value>
 </Data>

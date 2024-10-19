@@ -2,9 +2,16 @@ ROUTINE ExercicioObjeto
 ExercicioObjeto ;Exercicio de Objeto Curso
  
  ;Exclui tabela de curso
- Kill ^Treinamento.Data.CursoD
- ;Exclui tabela de curso
- Kill ^Treinamento.Data.AlunoD
+ Kill ^Treinamento.Data.CursoD,^Treinamento.Data.CursoI,^Treinamento.Data.CursoS
+ 
+ ;Exclui tabela de aluno
+ Kill ^Treinamento.Data.AlunoD,^Treinamento.Data.AlunoI,^Treinamento.Data.AlunoS
+ 
+ ;Exlui instrutor
+ Kill ^Treinamento.Data.InstrutorD,^Treinamento.Data.InstrutorI,^Treinamento.Data.InstrutorS
+ 
+ ;Exclui turma
+ Kill ^Treinamento.Data.TurmaD,^Treinamento.Data.TurmaI,^Treinamento.Data.TurmaS
 
  //Criacao de curso
  Set curso=##class(Treinamento.Data.Curso).%New()
@@ -31,5 +38,27 @@ ExercicioObjeto ;Exercicio de Objeto Curso
  Set aluno.Matricula = 1002
  Set aluno.Nome = "Valeria da Silva"
  Set tRet = aluno.%Save() 
+
+ //Criar Instrutor
+ Set instrutor = ##class(Treinamento.Data.Instrutor).%New()
+ Set instrutor.Matricula="CHEFAO"
+ Set instrutor.Nome="Professor Bravo"
+ Set tRet = instrutor.%Save()
+
+ //Obter dados do curso
+ Set tIdCurso = ##class(Treinamento.Data.Curso).%OpenIENome("Objeto IRIS")
+ 
+ //Obter dados do instrutor
+ Set tIdInstrutor = ##class(Treinamento.Data.Instrutor).%OpenIndxNome("Professor Bravo")
+ 
+ //Criação da turma
+ Set turma=##class(Treinamento.Data.Turma).%New()
+ Set turma.Curso = ##class(Treinamento.Data.Curso).%OpenId(tIdCurso)
+ Set turma.Status="Incompleta"
+ Set turma.Instrutor=##class(Treinamento.Data.Instrutor).%OpenId(tIdInstrutor)
+ Set tSQL="Select ID from Treinamento_Data.Aluno"
+ Set tRs = ##class(%SQL.Statement).%New()
+ Set tRt = tRs.%Prepare(tSQL)
+ Set tRt = tRs.%Execute()
 
  Quit

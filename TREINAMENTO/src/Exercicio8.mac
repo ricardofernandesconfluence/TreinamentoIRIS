@@ -1,0 +1,7 @@
+ROUTINE Exercicio8
+Exercicio8 ;Exercicio8
+ ;
+Inicio() ;
+ ;
+ Set a=1
+ Quit

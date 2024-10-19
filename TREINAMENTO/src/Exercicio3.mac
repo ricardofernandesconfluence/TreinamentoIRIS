@@ -1,0 +1,37 @@
+ROUTINE Exercicio3
+Exercicio3 ;Este é o exercicio 3
+ ;
+Inicio() ;
+ Read !,"Digite o valor de num1: ",x
+ Read !,"Digite o valor de num2: ",y
+ Read !,"Digite o valor de num3: ",z
+ 
+ Set (t,u)=""
+ For a=x:1:y
+ {
+	 If a#11=5 
+	 {
+		 w !,a," - este é numero que entre num1 e num2 dividido por 11 tem resto 5"
+		 Set t=t+1
+	 }
+	 Set u=u+a
+	 
+ }
+ 
+ w !!,"Total de numeros entre num1 e num2 que dividido por 11 tem resto 5: ",t
+ 
+ Set t=""
+ For a=y:1:z
+ {
+	 If a#3=0
+	 {
+		 w !,a," - este é numero multiplo de 3"
+		 Set t=t+1
+	 }
+ }
+ 
+ w !!,"Total de numeros entre num2 e num3 que é multiplo de 3: ",t
+
+ w !!,"Total da soma dos numeros entre num1 e num2: ",u
+
+ Quit

@@ -15,7 +15,7 @@ Property Status As %Boolean [ SqlColumnNumber = 4 ];
 
 // Alunos
 
-Property Alunos As %ListOfObjects [ SqlColumnNumber = 5 ];
+Property Alunos As list Of Treinamento.Data.Aluno [ SqlColumnNumber = 5 ];
 
 // Curso
 

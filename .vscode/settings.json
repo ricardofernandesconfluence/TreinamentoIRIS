@@ -10,9 +10,5 @@
     },
     "git.confirmSync": false,
     "git.autofetch": true,
-    "git.openRepositoryInParentFolders": "never",
-    "diffEditor.ignoreTrimWhitespace": false,
-    "[objectscript-class]": {
-      
-    }
- }  
+    "git.openRepositoryInParentFolders": "never"
+  }  

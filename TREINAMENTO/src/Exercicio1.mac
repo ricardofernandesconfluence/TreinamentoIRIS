@@ -16,5 +16,5 @@ Inicio ;
  }
  
  w !,"Total numeros pares divididos por 10 com resto = 0 é ",t
-
+ // teste git
  Quit

@@ -2,7 +2,7 @@
 Class Treinamento.Data.Curso Extends (%Persistent, %XML.Adaptor)
 {
 
-// Nome do aluno
+// Nome do Curso
 
 Property Nome As %String(MAXLEN = 60) [ SqlColumnNumber = 2 ];
 

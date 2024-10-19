@@ -1,0 +1,13 @@
+ROUTINE ExercicioObjeto
+ExercicioObjeto ;Exercicio de Objeto Curso
+ 
+ ;Exclui tabela de curso
+ Kill ^Treinamento.Data.CursoD
+ 
+ Set curso=##class(Treinamento.Data.Curso).%New()
+ Set curso.Nome="Objeto IRIS"
+ Set curso.Preco="1200.20"
+ Set curso.Duracao = 12
+ Set tRet = curso.%Save()
+ 
+ Quit

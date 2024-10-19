@@ -1,0 +1,25 @@
+ROUTINE ExercicioAluno
+ExercicioAluno ;Exercicio de Objeto aluno
+ 
+ ;Exclui tabela de curso
+ Kill ^Treinamento.Data.AlunoD
+ 
+ Set aluno=##class(Treinamento.Data.Aluno).%New()
+ Set aluno.Idade=15
+ Set aluno.Matricula = 1000
+ Set aluno.Nome = "Joao da Silva"
+ Set tRet = aluno.%Save()
+
+ Set aluno=##class(Treinamento.Data.Aluno).%New()
+ Set aluno.Idade=15
+ Set aluno.Matricula = 1001
+ Set aluno.Nome = "Renato da Silva"
+ Set tRet = aluno.%Save()
+
+ Set aluno=##class(Treinamento.Data.Aluno).%New()
+ Set aluno.Idade=15
+ Set aluno.Matricula = 1002
+ Set aluno.Nome = "Valeria da Silva"
+ Set tRet = aluno.%Save() 
+  
+ Quit

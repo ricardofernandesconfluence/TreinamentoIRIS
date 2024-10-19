@@ -7,7 +7,7 @@ Property Nome As %String(MAXLEN = 60) [ SqlColumnNumber = 2 ];
 
 // Matricula
 
-Property Preco As %String [ SqlColumnNumber = 3 ];
+Property Matricula As %String [ SqlColumnNumber = 3 ];
 
 Storage Default
 {
@@ -20,6 +20,9 @@ Storage Default
 </Value>
 <Value name="3">
 <Value>Preco</Value>
+</Value>
+<Value name="4">
+<Value>Matricula</Value>
 </Value>
 </Data>
 <DataLocation>^Treinamento.Data.InstrutorD</DataLocation>

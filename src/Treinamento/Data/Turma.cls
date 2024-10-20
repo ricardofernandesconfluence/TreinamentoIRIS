@@ -45,8 +45,46 @@ Storage Default
 </Data>
 <DataLocation>^Treinamento.Data.TurmaD</DataLocation>
 <DefaultData>TurmaDefaultData</DefaultData>
+<ExtentSize>1</ExtentSize>
 <IdLocation>^Treinamento.Data.TurmaD</IdLocation>
 <IndexLocation>^Treinamento.Data.TurmaI</IndexLocation>
+<Property name="%%CLASSNAME">
+<AverageFieldSize>2</AverageFieldSize>
+<OutlierSelectivity>.999999:</OutlierSelectivity>
+<Selectivity>0.0001%</Selectivity>
+</Property>
+<Property name="%%ID">
+<AverageFieldSize>3</AverageFieldSize>
+<Selectivity>1</Selectivity>
+</Property>
+<Property name="Alunos">
+<AverageFieldSize>17</AverageFieldSize>
+<OutlierSelectivity>.999999:$lb($lb("1"),$lb("2"),$lb("3"))</OutlierSelectivity>
+<Selectivity>0.0001%</Selectivity>
+</Property>
+<Property name="Curso">
+<AverageFieldSize>3</AverageFieldSize>
+<OutlierSelectivity>.999999:1</OutlierSelectivity>
+<Selectivity>0.0001%</Selectivity>
+</Property>
+<Property name="DataInicio">
+<AverageFieldSize>2</AverageFieldSize>
+<OutlierSelectivity>.999999:</OutlierSelectivity>
+<Selectivity>0.0001%</Selectivity>
+</Property>
+<Property name="Instrutor">
+<AverageFieldSize>3</AverageFieldSize>
+<OutlierSelectivity>.999999:1</OutlierSelectivity>
+<Selectivity>0.0001%</Selectivity>
+</Property>
+<Property name="Status">
+<AverageFieldSize>12</AverageFieldSize>
+<OutlierSelectivity>.999999:"Incompleta"</OutlierSelectivity>
+<Selectivity>0.0001%</Selectivity>
+</Property>
+<SQLMap name="IDKEY">
+<BlockCount>-4</BlockCount>
+</SQLMap>
 <StreamLocation>^Treinamento.Data.TurmaS</StreamLocation>
 <Type>%Storage.Persistent</Type>
 }
@@ -70,25 +108,40 @@ Method VerificaStatus(pCurso As %String) As %String [ Language = objectscript ]
 /// Imprime turma
 ClassMethod ImprimeTurma(pCurso As %String) As %Status
 {
-	Set sc = $$$OK
-	
-	// Pesquisa alunos de determinado curso
-	Set tSQL="Select Alunos from Treinamento_Data.Turma where Curso->Nome = ? "
-	Set tRs = ##class(%ResultSet).%New()
-	Set tRt = tRs.Prepare(tSQL)
-	Set tRt = tRs.Execute(pCurso)
-	If tRs.Next()
+	Try
 	{
+		Set tsc = $$$OK
 		
-		Set tObjAlunos = tRs.Get("Alunos")
-		For tcont=1:1:tObjAlunos.Count()
-		{
+		// Pesquisa alunos de determinado curso
+		Set tSQL="Select $LISTLENGTH(Alunos) as NumAlunos,ID from Treinamento_Data.Turma where Curso->Nome = ? "
+		Set tRs = ##class(%SQL.Statement).%New()
+		Set tRt = tRs.%Prepare(tSQL)
+		Set tsr = tRs.%Execute(pCurso)
+		If tsr.%Next()
+		{			
+			Set tIdTurma = tsr.%Get("ID")
+			Set total = tsr.%Get("NumAlunos")
+			Set turma = ##class(Treinamento.Data.Turma).%OpenId(tIdTurma)
 		}
+		Do tsr.Close() Kill tsr
+		
+		For tcont=1:1:total
+		{
+			Set aluno = turma.Alunos.GetAt(tcont)
+			w !,"Nome: ",aluno.Nome
+			w " Matricula: ",aluno.Matricula
+			w " Idade: ",aluno.Idade
 
+		}
 	}
-	Do tRs.Close() Kill tRs
-
-	Return sc
+	Catch exception
+	{
+		Set tsc = exception.AsStatus()
+		Set tsc = $SYSTEM.Status.GetErrorText(tsc)
+		Throw tsc
+	}
+	
+	Return tsc
 }
 
 }

@@ -57,4 +57,7 @@ ExercicioObjeto ;Exercicio de Objeto Curso
  Set tRt = turma.%Save()
 
  Set Statusturma = turma.VerificaStatus("Objeto IRIS")
+
+ Do ##class(Treinamento.Data.Turma).ImprimeTurma("Objeto IRIS")
+ 
  Quit

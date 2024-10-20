@@ -51,4 +51,44 @@ Storage Default
 <Type>%Storage.Persistent</Type>
 }
 
+Method VerificaStatus(pCurso As %String) As %String [ Language = objectscript ]
+{
+	Set tSQL="Select Status from Treinamento_Data.Turma where Curso->Nome = ?"
+	Set tRs = ##class(%ResultSet).%New()
+	Set tRt = tRs.Prepare(tSQL)
+	Set tRt = tRs.Execute(pCurso)
+	Set tStatus=""
+	If tRs.Next()
+	{
+		Set tStatus=tRs.Get("Status")
+	}
+	Do tRs.Close() Kill tRs
+	
+	return tStatus
+}
+
+/// Imprime turma
+ClassMethod ImprimeTurma(pCurso As %String) As %Status
+{
+	Set sc = $$$OK
+	
+	// Pesquisa alunos de determinado curso
+	Set tSQL="Select Alunos from Treinamento_Data.Turma where Curso->Nome = ? "
+	Set tRs = ##class(%ResultSet).%New()
+	Set tRt = tRs.Prepare(tSQL)
+	Set tRt = tRs.Execute(pCurso)
+	If tRs.Next()
+	{
+		
+		Set tObjAlunos = tRs.Get("Alunos")
+		For tcont=1:1:tObjAlunos.Count()
+		{
+		}
+
+	}
+	Do tRs.Close() Kill tRs
+
+	Return sc
+}
+
 }

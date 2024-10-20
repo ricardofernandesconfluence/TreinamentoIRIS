@@ -55,4 +55,6 @@ ExercicioObjeto ;Exercicio de Objeto Curso
  Do turma.Alunos.Insert(aluno3)
  
  Set tRt = turma.%Save()
+
+ Set Statusturma = turma.VerificaStatus("Objeto IRIS")
  Quit

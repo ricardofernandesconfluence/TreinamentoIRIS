@@ -1,21 +1,44 @@
 Class Treinamento.Data.Usuario Extends (%Persistent, %XML.Adaptor)
 {
 
-// Nome usuario
+Property Nome As %String(MAXLEN = 200) [ SqlColumnNumber = 2 ];
 
-Property Nome As %String(MAXLEN = 60) [ SqlColumnNumber = 2 ];
+Property Cargo As %String [ SqlColumnNumber = 3 ];
 
-// SobreNome
+Property Sexo As %String [ SqlColumnNumber = 4 ];
 
-Property Sobrenome As %String(MAXLEN = 60) [ SqlColumnNumber = 3 ];
+Property Email As %String [ SqlColumnNumber = 5 ];
 
-// Sexo
+Relationship PerfilId As Treinamento.Data.Perfil [ Cardinality = many, Inverse = NivelLista ];
 
-Property Sexo As %String(MAXLEN = 10) [ SqlColumnNumber = 4 ];
+Relationship UsuarioPerfil As Treinamento.Data.UsuarioPerfil [ Cardinality = many, Inverse = UsuarioLista ];
 
-// email
-
-Property email As %String(MAXLEN = 30) [ SqlColumnNumber = 5 ];
+ClassMethod CriarUsuario(pNome As %String, pCargo As %String, pSexo As %String, pEmail As %String) As %String [ Language = objectscript ]
+{
+    Try
+    {
+        Set statusCode = $SYSTEM.Status.OK()        
+        
+        Set SQL  = "Insert into Treinamento_Data.Usuario (Nome, Cargo, Sexo, Email)values"
+        Set SQL = SQL_"('"_pNome_"', '"_pCargo_"','"_pSexo_"', '"_pEmail_"')"
+        set resultSet = ##Class(%ResultSet).%New()
+        Set status = resultSet.Prepare(SQL)
+        Set status = resultSet.Execute()
+        if status
+        {
+            W "Cadastro de usuario realizado com sucesso!" 
+        }
+    
+    }
+    Catch(exception)
+    {
+        Set tSC = exception.AsStatus()
+        Set errorMessage = $System.Status.GetErrorText(tSC)
+        Throw exception
+    }
+    
+    Quit
+}
 
 Storage Default
 {
@@ -27,13 +50,13 @@ Storage Default
 <Value>Nome</Value>
 </Value>
 <Value name="3">
-<Value>Sobrenome</Value>
+<Value>Cargo</Value>
 </Value>
 <Value name="4">
 <Value>Sexo</Value>
 </Value>
 <Value name="5">
-<Value>email</Value>
+<Value>Email</Value>
 </Value>
 </Data>
 <DataLocation>^Treinamento.Data.UsuarioD</DataLocation>

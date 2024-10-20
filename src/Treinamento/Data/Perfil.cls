@@ -1,13 +1,13 @@
 Class Treinamento.Data.Perfil Extends (%Persistent, %XML.Adaptor)
 {
 
-// Nome Perfil
+Property NomePerfil As %String(MAXLEN = 200) [ SqlColumnNumber = 2 ];
 
-Property NomePerfil As %String(MAXLEN = 60) [ SqlColumnNumber = 2 ];
+Property Codigo As %String [ SqlColumnNumber = 3 ];
 
-// Codigo Perfil
+Relationship UsuarioPerfilId As Treinamento.Data.UsuarioPerfil [ Cardinality = many, Inverse = PerfilLista ];
 
-Property Codigo As %Numeric [ SqlColumnNumber = 3 ];
+Relationship ListaNiveis As Treinamento.Data.Nivel [ Cardinality = one, Inverse = IdPerfil ];
 
 Storage Default
 {
@@ -20,6 +20,9 @@ Storage Default
 </Value>
 <Value name="3">
 <Value>Codigo</Value>
+</Value>
+<Value name="4">
+<Value>ListaNiveis</Value>
 </Value>
 </Data>
 <DataLocation>^Treinamento.Data.PerfilD</DataLocation>

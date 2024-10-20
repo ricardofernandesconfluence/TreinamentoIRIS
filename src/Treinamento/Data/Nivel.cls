@@ -1,13 +1,13 @@
 Class Treinamento.Data.Nivel Extends (%Persistent, %XML.Adaptor)
 {
 
-// Nome nivel
+Property NomeNivel As %String(MAXLEN = 200) [ SqlColumnNumber = 2 ];
 
-Property NomeNivel As %String(MAXLEN = 60) [ SqlColumnNumber = 2 ];
+Property Codigo As %String [ SqlColumnNumber = 3 ];
 
-// Codigo nivel
+Relationship IdPerfil As Treinamento.Data.Perfil [ Cardinality = many, Inverse = ListaNiveis ];
 
-Property Codigo As %Numeric [ SqlColumnNumber = 3 ];
+Relationship UsuarioNivelId As Treinamento.Data.UsuarioPerfil [ Cardinality = many, Inverse = UsuarioNivelId ];
 
 Storage Default
 {
